@@ -1,0 +1,695 @@
+/*=========================================
+    BELEZAS DO BRASIL
+    Desenvolvido por Ezequiel Pedrassolli
+=========================================*/
+
+/* RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f8fb;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/*============================
+        MENU
+=============================*/
+.menu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(11, 84, 55, 0.75); /* Tom verde escuro com transparência */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 999;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.logo h1{
+    color: rgb(10, 226, 28);
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.menu ul{
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.menu a{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.menu a:hover{
+    color: #f7de05; /* Destaque em dourado combinando com o rodapé */
+}
+
+/*============================
+      PESQUISA
+=============================*/
+.pesquisa input{
+    width: 260px;
+    padding: 10px 18px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 30px;
+    outline: none;
+    font-size: 15px;
+    background: rgba(255,255,255,0.9);
+    transition: .3s;
+}
+
+.pesquisa input:focus{
+    width: 290px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/*============================
+      HERO
+=============================*/
+.hero{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider{
+    width: 100%;
+    height: 100%;
+}
+
+.slide{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.slide.ativo{
+    opacity: 1;
+}
+
+.hero::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.3));
+    z-index: 1;
+}
+
+.hero-text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    color: white;
+    z-index: 2;
+    width: 85%;
+    max-width: 800px;
+}
+
+.hero-text h1{
+    font-size: 65px;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.hero-text p{
+    font-size: 22px;
+    margin-bottom: 25px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    line-height: 1.4;
+}
+
+.hero-text h2{
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 35px;
+    color: #e0e0e0;
+}
+
+.hero-text i{
+    font-size: 20px;
+    color:rgb(228, 253, 6);
+    display: block;
+    margin-bottom: 20px;
+}
+
+/*============================
+        BOTÕES
+=============================*/
+.btn{
+    display: inline-block;
+    padding: 14px 35px;
+    background: #58f144;
+    color: #080808;
+    text-decoration: none;
+    border-radius: 40px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(20, 136, 93, 0.3);
+    transition: .3s;
+}
+
+.btn:hover{
+    background: #370eec;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(5, 97, 63, 0.4);
+}
+
+/*============================
+      DESTINOS / SEÇÕES
+=============================*/
+.destinos, .informacoes, .secao-curiosidades{
+    width: 90%;
+    max-width: 1300px;
+    margin: 80px auto;
+}
+
+.destinos h2, .informacoes h2, .secao-curiosidades h2{
+    text-align: center;
+    font-size: 36px;
+    color: #0c7a31;
+    margin-bottom: 45px;
+    position: relative;
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.card{
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    transition: transform .4s, box-shadow .4s;
+}
+
+.card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.card img{
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card h3{
+    padding: 20px 20px 10px;
+    color: #0b8457;
+    font-size: 20px;
+}
+
+.card p{
+    padding: 0 20px 20px;
+    text-align: justify;
+    color: #130606;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.card .btn{
+    margin: 0 20px 20px;
+    background: #2e7c0a;
+    padding: 10px 25px;
+    font-size: 15px;
+}
+
+.card .btn:hover{
+    background: #46dd06;
+}
+
+/*=========================================
+            GALERIA
+=========================================*/
+.galeria{
+    width: 90%;
+    max-width: 1300px;
+    margin: 80px auto;
+}
+
+.galeria h2{
+    text-align: center;
+    color: #0b8457;
+    font-size: 36px;
+    margin-bottom: 45px;
+}
+
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.galeria img{
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: .4s;
+    cursor: pointer;
+}
+
+.galeria img:hover{
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/*=========================================
+            CONTADOR
+=========================================*/
+.contador{
+    width: 100%;
+    background: #0b8457;
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    text-align: center;
+    padding: 50px 20px;
+    margin: 80px 0;
+    box-shadow: inset 0 0 100px rgba(0,0,0,0.1);
+}
+
+.contador-item h2{
+    font-size: 45px;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.contador-item p{
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/*=========================================
+            SOBRE / CONTEÚDO
+=========================================*/
+.conteudo{
+    width: 90%;
+    max-width: 950px;
+    margin: 80px auto;
+    background: rgb(169, 238, 234);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.03);
+}
+
+.conteudo h2{
+    text-align: center;
+    color: #0b8457;
+    font-size: 34px;
+    margin-bottom: 30px;
+}
+
+.conteudo p{
+    text-align: justify;
+    font-size: 17px;
+    margin-bottom: 25px;
+    line-height: 1.8;
+    color: #444;
+}
+
+/*=========================================
+            COMENTÁRIOS / FORMULÁRIO
+=========================================*/
+.comentarios{
+    width: 90%;
+    max-width: 700px;
+    margin: 80px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+}
+
+.comentarios h2{
+    text-align: center;
+    color: #059c65;
+    margin-bottom: 25px;
+}
+
+.texto-comentario {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.comentarios input,
+.comentarios textarea{
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #fafafa;
+    transition: .3s;
+}
+
+.comentarios input:focus,
+.comentarios textarea:focus{
+    border-color: #0b8457;
+    background: white;
+    outline: none;
+    box-shadow: 0 0 8px rgba(11, 132, 87, 0.15);
+}
+
+.comentarios textarea{
+    min-height: 150px;
+    resize: vertical;
+}
+
+.comentarios button{
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background: #0b8457;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(11, 132, 87, 0.2);
+    transition: .3s;
+}
+
+.comentarios button:hover{
+    background: #080ce9;
+    transform: translateY(-2px);
+}
+
+/* =========================================
+            TESTEMUNHOS (Melhorado)
+============================================ */
+.testemunhos{
+    padding: 80px 5%;
+    background: #a1cae6;
+    text-align: center;
+}
+
+.testemunhos h2{
+    font-size: 36px;
+    margin-bottom: 45px;
+    color: #0b8457;
+}
+
+.testemunhos .cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.testemunhos .card{
+    background: rgb(148, 238, 95); /* Troca do amarelo gritante por fundo limpo */
+    padding: 30px 25px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    border-top: 4px solid #0b8457;
+}
+
+.testemunhos .card img{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #0b8457;
+}
+
+.testemunhos .card h3{
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+    padding: 0;
+}
+
+.testemunhos .card p{
+    color: #080808; /* Remoção do texto vermelho por tom cinza elegante */
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+    padding: 0;
+}
+
+/*=========================
+            RODAPÉ
+==========================*/
+footer{
+    background: #002b44;
+    color: rgb(175, 233, 223);
+    padding: 45px 20px 20px;
+    margin-top: 60px;
+}
+
+.rodape{
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.rodape-coluna{
+    flex: 1;
+    min-width: 220px;
+}
+
+.rodape h3{
+    color: #ffd54f;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.rodape p{
+    font-size: 14px;
+    margin: 8px 0;
+    color: #ccc;
+    line-height: 1.5;
+}
+
+.rodape a{
+    color: #ccc;
+    text-decoration: none;
+    transition: .2s;
+}
+
+.rodape a:hover{
+    color: #ffd54f;
+}
+
+footer hr{
+    border: none;
+    height: 1px;
+    background: rgba(255,255,255,0.15);
+    margin: 25px 0;
+}
+
+.copyright {
+    text-align: center;
+    font-size: 16px;
+    color: #67f00c;
+}
+
+/*=========================================
+          BOTÃO TOPO & LIGHTBOX
+=========================================*/
+#topo, #btnTopo {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: #0b8457;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: .3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 99;
+}
+
+#topo:hover, #btnTopo:hover {
+    transform: translateY(-5px);
+    background: #eede02;
+}
+
+.janela{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.92);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#imagemGrande{
+    max-width: 85%;
+    max-height: 80%;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.fechar{
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #bbb;
+    font-size: 50px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.fechar:hover {
+    color: white;
+}
+
+#anterior, #proxima{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 55px;
+    height: 55px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+#anterior { left: 30px; }
+#proxima { right: 30px; }
+
+#anterior:hover, #proxima:hover{
+    background: #0b8457;
+}
+
+/*=========================================
+          ANIMAÇÕES (Intersection Observer)
+=========================================*/
+.card{
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .6s ease-out, transform .6s ease-out;
+}
+
+.card.mostrar{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/*=========================================
+          RESPONSIVO OTIMIZADO
+=========================================*/
+@media(max-width: 900px) {
+    .menu {
+        position: absolute; /* Evita cobrir a tela inteira ao rolar */
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+    .menu ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    .hero-text h1 {
+        font-size: 38px;
+    }
+    .hero-text p {
+        font-size: 18px;
+    }
+    .pesquisa input {
+        width: 100%;
+        max-width: 280px;
+    }
+    .conteudo {
+        padding: 20px;
+    }
+}
+
+@media(max-width: 600px) {
+    .hero {
+        min-height: 85vh; /* Garante que o texto sempre caiba */
+        height: auto;
+        padding: 100px 0 40px;
+    }
+    .hero-text {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        margin: 0 auto;
+    }
+    .hero-text h1 {
+        font-size: 28px;
+    }
+    .hero-text p {
+        font-size: 15px;
+    }
+    .logo h1 {
+        font-size: 20px;
+    }
+    .cards, .galeria-grid, .cards-curiosidades {
+        grid-template-columns: 1fr; /* Coluna única no celular */
+    }
+    #imagemGrande {
+        max-width: 95%;
+    }
+    #anterior, #proxima {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    #anterior { left: 5px; }
+    #proxima { right: 5px; }
+    
+    /* Garantia para os cards não sumirem se o JS falhar */
+    .card {
+        opacity: 1;
+        transform: none;
+    }
+}
